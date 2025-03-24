@@ -1,0 +1,645 @@
+@prefix : <http://www.semanticweb.org/serge/ontologies/2022/10/pko-onto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:12AM_F a time:Instance .
+
+:12AM_M a time:Instance .
+
+:12AM_T a time:Instance .
+
+:8AM_W a time:Instance .
+
+:AudioResource a owl:Class ;
+    rdfs:comment "Audio resource"@en ;
+    rdfs:subClassOf :SoftResource .
+
+:Automaton a owl:Class ;
+    rdfs:comment "An automomous or self-operating agent"@en ;
+    rdfs:subClassOf :Individual .
+
+:ClassRoom01 a :Location .
+
+:ClassRoom02 a :Location .
+
+:ClassRoom05 a :Location .
+
+:ComputerLanguage a :DocResource ;
+    :resourceName "Language Computer" .
+
+:Education a :Project ;
+    rdfs:label "Education and course programming" ;
+    :isComposedOf :DataBaseTeaching,
+        :ProjectManagementTeaching,
+        :PythonTeaching,
+        :SoftwareEngTeaching,
+        :UserInterfaceTeaching .
+
+:ImageResource a owl:Class ;
+    rdfs:comment "Image resource"@en ;
+    rdfs:labe "Image" ;
+    rdfs:subClassOf :SoftResource .
+
+:MixedResource a owl:Class ;
+    rdfs:comment "Mixed resource containing multiple type of modalities"@en ;
+    rdfs:lable "Mixed contain" ;
+    rdfs:subClassOf :SoftResource .
+
+:Team a owl:Class ;
+    rdfs:comment "Agents having a common goal"@en ;
+    rdfs:subClassOf :Organization .
+
+:TutorialRoom02 a :Location .
+
+:activityName a owl:DatatypeProperty ;
+    rdfs:comment " The name of the activity"@en ;
+    rdfs:domain :Activity ;
+    rdfs:range xsd:string .
+
+:affectes a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Rule ;
+    rdfs:range :Goal .
+
+:agentName a owl:DatatypeProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Agent ;
+    rdfs:range xsd:string .
+
+:belongsTo a owl:ObjectProperty ;
+    rdfs:comment "A context (location, resource) may belong to an agent. This agent is the owner of this context"@en ;
+    rdfs:domain :Context ;
+    rdfs:range :Agent .
+
+:contains a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Resource ;
+    rdfs:range :Resource ;
+    rdfs:subPropertyOf :hasContext .
+
+:determines a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Rule ;
+    rdfs:range :Operation .
+
+:hasAddress a owl:DatatypeProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Location ;
+    rdfs:range xsd:string .
+
+:hasBeginTime a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range time:Instance ;
+    rdfs:subPropertyOf :hasTime .
+
+:hasCommnunity a owl:ObjectProperty ;
+    rdfs:comment "Community refers to all agents involve in the activity."@en ;
+    rdfs:domain :Project ;
+    rdfs:range :Agent .
+
+:hasConstraint a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Activity ;
+    rdfs:range :Constraint ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:hasDuration a owl:ObjectProperty ;
+    rdfs:comment "Duration of an activity in minute"@en ;
+    rdfs:domain :Project ;
+    rdfs:range time:DateTimeInterval,
+        time:Duration,
+        time:Interval,
+        time:TemporalDuration .
+
+:hasEndTime a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range time:Instance ;
+    rdfs:subPropertyOf :hasTime .
+
+:hasLocation a owl:ObjectProperty ;
+    rdfs:comment "Links a domain to a geographical position"@en ;
+    rdfs:domain :Action,
+        :Activity,
+        :Operation,
+        :Resource ;
+    rdfs:range :Location ;
+    rdfs:subPropertyOf :hasContext .
+
+:hasObject a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Activity ;
+    rdfs:range :Objective .
+
+:hasRule a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Activity ;
+    rdfs:range :Rule .
+
+:isAssignedTo a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Action,
+        :Operation ;
+    rdfs:range :Agent ;
+    rdfs:subPropertyOf :hasSubject .
+
+:isComposedOf a owl:IrreflexiveProperty,
+        owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Action,
+        :Activity,
+        :Project ;
+    rdfs:range :Action,
+        :Activity,
+        :Operation .
+
+:isFollowedBy a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range :Project ;
+    owl:inverseOf :isPrecededBy .
+
+:isMotivatedBy a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Activity ;
+    rdfs:range :Motive ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:isPartOf a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Resource ;
+    rdfs:range :Resource ;
+    rdfs:subPropertyOf :hasContext .
+
+:isPartOfGroup a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Agent ;
+    rdfs:range :Group ;
+    rdfs:subPropertyOf :isPartOfOrganization .
+
+:isSubActivityOf a owl:ObjectProperty ;
+    rdfs:domain :Activity ;
+    rdfs:range :Activity .
+
+:isSubGoalOf a owl:ObjectProperty ;
+    rdfs:domain :Goal ;
+    rdfs:range :Goal .
+
+:objectiveDescription a owl:DatatypeProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Objective ;
+    rdfs:range xsd:string .
+
+:projectDescription a owl:DatatypeProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range xsd:string .
+
+:projectName a owl:DatatypeProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range xsd:string .
+
+:resourceName a owl:DatatypeProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Resource ;
+    rdfs:range xsd:string .
+
+:resultsIn a owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Goal ;
+    rdfs:range :Action .
+
+:usesResource a owl:ObjectProperty ;
+    rdfs:domain :Action,
+        :Activity,
+        :Operation ;
+    rdfs:range :Resource ;
+    rdfs:subPropertyOf :hasContext .
+
+:10AM_F a time:Instance .
+
+:10AM_M a time:Instance .
+
+:10AM_T a time:Instance .
+
+:10AM_W a time:Instance .
+
+:12AM_W a time:Instance .
+
+:8AM_F a time:Instance .
+
+:8AM_M a time:Instance .
+
+:8AM_T a time:Instance .
+
+:ClassRoom03 a :Location .
+
+:ComputerRoom01 a :Location .
+
+:Constraint a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Rule .
+
+:DBTeacher1 a :Person ;
+    rdfs:label "DB course teacher" .
+
+:DBTeacher2 a :Person ;
+    rdfs:label "DB tutorial teacher" .
+
+:DataBaseCourse a :Activity ;
+    rdfs:label "Database Course" ;
+    :activityName "DB Course" ;
+    :hasDuration :120min ;
+    :hasLocation :ClassRoom ;
+    :hasObjective :ObjectiveMysql ;
+    :hasSubject :DBTeacher1 ;
+    :isFollowedBy :DataBaseTutorial ;
+    :usesResource :Desktop01,
+        :MysqlBook,
+        :PDFMysql .
+
+:DataBaseTeaching a :Activity ;
+    rdfs:label "DataBase teaching unit" ;
+    :isComposedOf :DataBaseCourse,
+        :DataBaseTutorial .
+
+:Desktop01 a :HardResource ;
+    :resourceName "Ordinateur Desktop" .
+
+:Desktop02 a :HardResource ;
+    :resourceName "Ordinateur Desktop" .
+
+:Group a owl:Class ;
+    rdfs:comment "Agents having individual goals "@en ;
+    rdfs:subClassOf :Organization .
+
+:HTMLBook a :DocResource ;
+    :resourceName "Livre HTML" .
+
+:LCDProjector01 a :HardResource ;
+    :resourceName "LCD Projector" .
+
+:LCDProjector02 a :HardResource ;
+    :resourceName "LCD Projector" .
+
+:Laptop01 a :HardResource ;
+    :resourceName "Laptop LENOVO" ;
+    owl:sameAs :Laptop03 .
+
+:Laptop02 a :HardResource ;
+    :resourceName "Laptop HP" .
+
+:Motive a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Governance .
+
+:ObjectiveHTML a :Objective ;
+    :objectiveDescription "This course is intended to introduce Web interface programming to level 02 students. It will enables them to designer and display elements such as text, images, forms and interactive functions in a web browser" .
+
+:ObjectiveProjectManag a :Objective ;
+    :objectiveDescription " The main  objective of this course is to let students acquire a global vision of projects, provide then with practical tools for anticipating drifts in costs, deadlines and performance of industrial projects" .
+
+:PMBook a :DocResource ;
+    :resourceName "Project Management Book" .
+
+:PMTeacher4 a :Person ;
+    rdfs:label "PM teacher" .
+
+:PPTHTML a :SoftResource ;
+    :resourceName "HTML Power Point" .
+
+:ProjectManagementCourse a :Activity ;
+    rdfs:label "Project Management course" ;
+    :activityName "PM Course" ;
+    :hasBeginTime :8AM_T ;
+    :hasEndTime :10AM_T ;
+    :hasLocation :ClassRoom04 ;
+    :hasObjective :ObjectiveProjectManag ;
+    :hasSubject :PMTeacher4 ;
+    :usesResource :Desktop02,
+        :PMBook,
+        :XSLCourse .
+
+:ProjectManagementTeaching a :Activity ;
+    rdfs:label "Project management teaching unit" ;
+    :isComposedOf :ProjectManagementCourse .
+
+:PyTeacher1 a :Person ;
+    rdfs:label "Python course teacher" .
+
+:PyTeacher2 a :Person ;
+    rdfs:label "Python practical teacher" .
+
+:PythonBook01 a :DocResource ;
+    :resourceName "Python Programming Book" ;
+    owl:sameAs :PythonBook02,
+        :VideoPython02 .
+
+:PythonCourse a :Activity ;
+    rdfs:label "Python Programming Course" ;
+    :activityName "Py Course" ;
+    :hasBeginTime :8AM_F ;
+    :hasEndTime :10AM_F ;
+    :hasLocation :ComputerRoom02,
+        :TutorialRoom01 ;
+    :hasObjective :ObjectivePython ;
+    :hasSubject :PyTeacher1 ;
+    :isFollowedBy :PythonPractical ;
+    :usesResource :ComputerIntroduction,
+        :Laptop01,
+        :PythonBook01,
+        :VideoPython01 .
+
+:PythonTeaching a :Activity ;
+    rdfs:label "Python programming teaching unit" ;
+    :isComposedOf :PythonCourse,
+        :PythonPractical .
+
+:SETeacher5 a :Person ;
+    rdfs:label "SE course teacher" .
+
+:SETeacher6 a :Person ;
+    rdfs:label "SE tutorial teacher" .
+
+:SETeacher7 a :Person ;
+    rdfs:label "SE practical teacher" .
+
+:SETeacher8 a :Person ;
+    rdfs:label "SE project teacher" .
+
+:SoftwareEngCourse a :Activity ;
+    rdfs:label "Software Engineering Course" ;
+    :activityName "SE Course" ;
+    :hasDuration :120min ;
+    :hasLocation :ClassRoom03 ;
+    :hasObjective :ObjectiveSoftwareEng ;
+    :hasSubject :SETeacher5 ;
+    :isFollowedBy :SoftwareEngTutorial ;
+    :usesResource :ComputerHardware,
+        :SoftwareMysql .
+
+:SoftwareEngTeaching a :Activity ;
+    rdfs:label "Software engineering teaching unit" ;
+    :isComposedOf :SoftwareEngCourse,
+        :SoftwareEngPractical,
+        :SoftwareEngProject,
+        :SoftwareEngTutorial .
+
+:SoftwareMysql a :SoftResource ;
+    :resourceName "Mysql Software" .
+
+:UITeacher3 a :Person ;
+    rdfs:label "UI teacher" .
+
+:UserInterfaceCourse a :Activity ;
+    rdfs:label "User Interface Course" ;
+    :activityName "UI Course" ;
+    :hasBeginTime :10AM_W ;
+    :hasEndTime :12AM_W ;
+    :hasLocation :ClassRoom04,
+        :CompterRoom03 ;
+    :hasObjective :ObjectiveHTML ;
+    :hasSubject :UITeacher3 ;
+    :usesResource :HTMLBook,
+        :PPTHTML,
+        :VideoHTML01,
+        :VideoHTML02 .
+
+:UserInterfaceTeaching a :Activity ;
+    rdfs:label "User interface teaching unit" ;
+    :isComposedOf :UserInterfaceCourse .
+
+:VideoHTML01 a :VideoResource ;
+    :resourceName "Introduction To HTML" .
+
+:VideoHTML02 a :VideoResource ;
+    :resourceName "HTML AND Css Web Programming" .
+
+:VideoPython01 a :VideoResource ;
+    :resourceName "Introduction To Python" ;
+    owl:sameAs :ComputerIntroduction .
+
+:XSLCourse a :SoftResource ;
+    :resourceName "XSL Course" .
+
+:hasSubject a owl:ObjectProperty ;
+    rdfs:comment "The person carrying out the activity"@en ;
+    rdfs:domain :Activity ;
+    rdfs:range :Agent .
+
+:isPartOfOrganization a owl:ObjectProperty ;
+    rdfs:comment "An agent can be part of an organization"@en ;
+    rdfs:domain :Agent ;
+    rdfs:range :Organization .
+
+:isPrecededBy a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range :Project .
+
+time:DateTimeInterval a owl:Class ;
+    rdfs:subClassOf :Time .
+
+time:Interval a owl:Class ;
+    rdfs:subClassOf :Time .
+
+time:TemporalDuration a owl:Class ;
+    rdfs:subClassOf :Time .
+
+:ClassRoom04 a :Location .
+
+:ComputerHardware a :DocResource ;
+    :resourceName "Hardware Computer" .
+
+:DataBaseTutorial a :Activity ;
+    rdfs:label "Database Tutorial" ;
+    :activityName "DB Tutorial" ;
+    :hasDuration :120min ;
+    :hasLocation :ClassRoom,
+        :ComputerRoom01 ;
+    :hasObjective :ObjectiveMysql ;
+    :hasSubject :DBTeacher2 ;
+    :usesResource :ComputerHardware,
+        :Laptop02,
+        :MysqlBook,
+        :PDFMysql .
+
+:Individual a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Agent .
+
+:Laptop03 a :HardResource ;
+    :resourceName "Laptop DELL " .
+
+:MysqlBook a :DocResource ;
+    :resourceName "Mysql Book" .
+
+:ObjectiveMysql a :Objective ;
+    :objectiveDescription "This course is intended to introduce Database modeling to level 03 students" .
+
+:ObjectivePython a :Objective ;
+    :objectiveDescription "This course is intended to introduce Python programming to level 01 students" .
+
+:PDFMysql a :DocResource ;
+    :resourceName "PDF Mysql" .
+
+:PythonBook02 a :DocResource ;
+    :resourceName "Python Programming Book New Edition" .
+
+:PythonPractical a :Activity ;
+    rdfs:label "Python Programming Practical" ;
+    :activityName "Py Practical" ;
+    :hasBeginTime :8AM_M ;
+    :hasEndTime :10AM_M ;
+    :hasLocation :ComputerRoom02,
+        :TutorialRoom01 ;
+    :hasObjective :ObjectivePython ;
+    :hasSubject :PyTeacher2 ;
+    :usesResource :ComputerIntroduction,
+        :LCDProjector02,
+        :Laptop03,
+        :PythonBook02,
+        :VideoPython02 .
+
+:SoftwareEngPractical a :Activity ;
+    rdfs:label "Software Engineering Practical" ;
+    :activityName "SE Practical" ;
+    :hasDuration :120min ;
+    :hasLocation :ComputerRoom02 ;
+    :hasObjective :ObjectiveSoftwareEng ;
+    :hasSubject :SETeacher7 ;
+    :isFollowedBy :SoftwareEngProject .
+
+:SoftwareEngProject a :Activity ;
+    rdfs:label "Software Engineering Project" ;
+    :activityName "SE Project" ;
+    :hasDuration :120min ;
+    :hasLocation :ComputerRoom02 ;
+    :hasObjective :ObjectiveSoftwareEng ;
+    :hasSubject :SETeacher8 ;
+    :usesResource :LCDProjector01 .
+
+:SoftwareEngTutorial a :Activity ;
+    rdfs:label "Software Engineering Tutorial" ;
+    :activityName "SE Tutorial" ;
+    :hasDuration :120min ;
+    :hasLocation :TutorialRoom01 ;
+    :hasObjective :ObjectiveSoftwareEng ;
+    :hasSubject :SETeacher6 ;
+    :isFollowedBy :SoftwareEngPractical .
+
+:VideoPython02 a :VideoResource ;
+    :resourceName "Python Programming Beginners" .
+
+:hasTime a owl:ObjectProperty ;
+    rdfs:comment " "@en ;
+    rdfs:domain :Project ;
+    rdfs:range time:Instance .
+
+time:Duration a owl:Class ;
+    rdfs:subClassOf :Time .
+
+:ComputerIntroduction a :DocResource ;
+    :resourceName "Introduction au Computer" .
+
+:Organization a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Agent .
+
+:TutorialRoom01 a :Location .
+
+:ComputerRoom02 a :Location .
+
+:Context a owl:Class ;
+    rdfs:comment " "@en .
+
+:Goal a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Governance .
+
+:Governance a owl:Class ;
+    rdfs:comment " "@en .
+
+:ObjectiveSoftwareEng a :Objective ;
+    :objectiveDescription "This course will enable level 03 students to systematic procedures  large-scale softwares so that their specifications correspond to the real needs of the customers" .
+
+:Rule a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Governance .
+
+:VideoResource a owl:Class ;
+    rdfs:comment "Video resource"@en ;
+    rdfs:subClassOf :SoftResource .
+
+:hasContext a owl:ObjectProperty ;
+    rdfs:domain :Activity ;
+    rdfs:range :Context .
+
+:Operation a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Action .
+
+:Time a owl:Class .
+
+:120min a time:Duration .
+
+:Action a owl:Class ;
+    rdfs:comment "A well define and specific work that one can carry out in an activity"@en ;
+    rdfs:subClassOf :Activity .
+
+:HardResource a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Resource .
+
+:Objective a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Governance .
+
+:SoftResource a owl:Class ;
+    rdfs:comment "Intangible resources used to carry out an activity"@en ;
+    rdfs:subClassOf :Resource .
+
+:Agent a owl:Class ;
+    rdfs:comment " "@en .
+
+:DocResource a owl:Class ;
+    rdfs:comment "Document resource"@en ;
+    rdfs:subClassOf :SoftResource .
+
+:Resource a owl:Class ;
+    rdfs:comment " "@en ;
+    rdfs:subClassOf :Context .
+
+:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:comment "Humans being"@en ;
+    rdfs:subClassOf :Individual .
+
+:Location a owl:Class ;
+    rdfs:comment "A geographical location"@en ;
+    rdfs:subClassOf :Context .
+
+:Project a owl:Class ;
+    rdfs:comment " "@en .
+
+time:Instance rdfs:subClassOf :Time .
+
+:Activity a owl:Class ;
+    rdfs:comment "An action directed to an object, carried out by an agent not necessarily conscious. An activity can be made up of other activities or tasks"@en ;
+    rdfs:subClassOf :Project .
+

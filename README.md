@@ -1,23 +1,23 @@
 
-# 🧠 Semantic Similarity Analyzer for RDF Graphs
+#  Semantic Similarity Analyzer for RDF Graphs
 
 This project implements a semantic similarity framework to detect equivalences between RDF resources using ontological reasoning, graph embeddings (Node2Vec), and lexical similarity, focus on  knowledge graph alignment by processing RDF data, computing node embeddings, and providing a modular and scalable framework for entity resolution, ontology alignment, and knowledge graph integration.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 🔍 **Conceptual Similarity** via ontology class hierarchies
-- 🧠 **Graph Embedding Similarity** using Node2Vec
-- 📝 **Lexical Similarity** using fuzzy string matching
-- 🔁 Automatic fusion of similar entities via `owl:sameAs`
-- 📊 **2D visualization** of learned embeddings using t-SNE
-- 🌐 **Graph visualization** with labeled RDF relations
-- 📈 **MRR (Mean Reciprocal Rank)** evaluation of filtered results
+-  **Conceptual Similarity** via ontology class hierarchies
+-  **Graph Embedding Similarity** using Node2Vec
+-  **Lexical Similarity** using fuzzy string matching
+-  **Automatic fusion of similar entities via `owl:sameAs`
+-  **2D visualization** of learned embeddings using t-SNE
+-  **Graph visualization** with labeled RDF relations
+-  **MRR (Mean Reciprocal Rank)** evaluation of filtered results
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 | File | Description |
 |------|-------------|
@@ -28,7 +28,7 @@ This project implements a semantic similarity framework to detect equivalences b
 
 ---
 
-## 🧠 How It Works
+##  How It Works
 
 1. **RDF Parsing**: Loads your `.ttl` file and constructs graphs of concepts and instances.
 2. **Graph Construction**:
@@ -51,11 +51,11 @@ This project implements a semantic similarity framework to detect equivalences b
 
 ---
 
-## 📊 Evaluation (MRR)
+##  Evaluation (MRR)
 
 After similarity computation, the script filters meaningful pairs and computes Mean Reciprocal Rank to evaluate ranking quality.
 
-## 📦 Installation
+##  Installation
 
 Required packages:
 
@@ -67,13 +67,13 @@ Required packages:
 `matplotlib`
 `pandas`
 
-## 🛠️ Customization
+##  Customization
 
 - Change the weights in finalSimilarity = 0.75 * concept_sim + 0.25 * embedding_sim
 - Swap out Node2Vec with GraphSAGE or GCN
 - Add more RDF predicates in filtering logic
 
-## ## 📊 RDF Graph Visualization
+##  RDF Graph Visualization
 
 ![RDF Graph Structure](plots/GraphRDF.png)
 
